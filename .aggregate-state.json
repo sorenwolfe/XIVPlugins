@@ -1,0 +1,56 @@
+[
+  {
+    "Author": "SorenWolfe",
+    "Name": "RaidPlan",
+    "InternalName": "RaidPlan",
+    "AssemblyVersion": "0.4.1.0",
+    "Description": "Build, share and call raid strategies without leaving the game. Slide-based arena diagrams, per-player cooldown assignments, and shotcall reminders anchored to real boss casts or to timings the plugin learns from your own pulls.",
+    "Punchline": "Build, share and call raid strategies without leaving the game.",
+    "ApplicableVersion": "any",
+    "DalamudApiLevel": 15,
+    "RepoUrl": "https://github.com/sorenwolfe/RaidPlan",
+    "IconUrl": "https://raw.githubusercontent.com/sorenwolfe/RaidPlan/main/images/icon.png",
+    "Tags": [
+      "raid",
+      "strategy",
+      "planner",
+      "party",
+      "reminders"
+    ],
+    "CategoryTags": [
+      "utility"
+    ],
+    "DownloadCount": 0,
+    "DownloadLinkInstall": "https://github.com/sorenwolfe/RaidPlan/releases/latest/download/RaidPlan.zip",
+    "DownloadLinkUpdate": "https://github.com/sorenwolfe/RaidPlan/releases/latest/download/RaidPlan.zip",
+    "DownloadLinkTesting": "https://github.com/sorenwolfe/RaidPlan/releases/latest/download/RaidPlan.zip",
+    "_source": "sorenwolfe/RaidPlan"
+  },
+  {
+    "Author": "SorenWolfe",
+    "Name": "Foxtrot",
+    "InternalName": "Foxtrot",
+    "AssemblyVersion": "0.1.0.0",
+    "Description": "Preview any orchestrion roll before you go and earn it. Right-click a roll in your bags for a small player, or open the browser and search every track in the game — including the ones you do not own yet. The zone music steps aside while you listen and comes back when you stop.",
+    "Punchline": "Hear an orchestrion roll before you go and earn it.",
+    "ApplicableVersion": "any",
+    "DalamudApiLevel": 15,
+    "RepoUrl": "https://github.com/sorenwolfe/Foxtrot",
+    "IconUrl": "https://raw.githubusercontent.com/sorenwolfe/Foxtrot/main/images/icon.png",
+    "Tags": [
+      "orchestrion",
+      "music",
+      "preview",
+      "bgm",
+      "quality of life"
+    ],
+    "CategoryTags": [
+      "utility"
+    ],
+    "DownloadCount": 0,
+    "DownloadLinkInstall": "https://github.com/sorenwolfe/Foxtrot/releases/latest/download/Foxtrot.zip",
+    "DownloadLinkUpdate": "https://github.com/sorenwolfe/Foxtrot/releases/latest/download/Foxtrot.zip",
+    "DownloadLinkTesting": "https://github.com/sorenwolfe/Foxtrot/releases/latest/download/Foxtrot.zip",
+    "_source": "sorenwolfe/Foxtrot"
+  }
+]

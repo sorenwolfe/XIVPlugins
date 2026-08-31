@@ -1,0 +1,7 @@
+{
+  "_comment": "Each plugin's own repo.json, in the order they should appear in the installer. Add a plugin by adding a line here — nothing else in this repository needs touching.",
+  "sources": [
+    { "owner": "sorenwolfe", "repo": "RaidPlan", "branch": "main", "path": "repo.json" },
+    { "owner": "sorenwolfe", "repo": "Foxtrot",  "branch": "main", "path": "repo.json" }
+  ]
+}

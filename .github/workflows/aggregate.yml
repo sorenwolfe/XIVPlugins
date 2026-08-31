@@ -1,0 +1,56 @@
+name: Rebuild the plugin list
+
+# Three ways in:
+#   - a schedule, so a plugin release is picked up without anyone doing anything;
+#   - the Actions tab, for when you have just released and do not want to wait;
+#   - repository_dispatch, if you later add a step to a plugin's release workflow to poke this.
+on:
+  schedule:
+    - cron: '17 * * * *'
+  workflow_dispatch:
+  repository_dispatch:
+    types: [plugin-released]
+  push:
+    branches: ['main']
+    paths: ['sources.json', 'tools/**', '.github/workflows/aggregate.yml']
+
+permissions:
+  contents: write
+
+concurrency:
+  group: aggregate
+  cancel-in-progress: false
+
+jobs:
+  aggregate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # The aggregator's own rules are checked before it is allowed to publish anything.
+      - name: Test the aggregator
+        run: python3 tools/test_aggregate.py
+
+      - name: Rebuild repo.json
+        id: build
+        run: python3 tools/aggregate.py
+
+      - name: Commit if anything changed
+        run: |
+          if [ -z "$(git status --porcelain repo.json .aggregate-state.json)" ]; then
+            echo "Nothing changed."
+            exit 0
+          fi
+
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add repo.json .aggregate-state.json
+          git commit -m "Rebuild the plugin list"
+          git push
