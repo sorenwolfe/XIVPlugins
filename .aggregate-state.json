@@ -3,7 +3,7 @@
     "Author": "SorenWolfe",
     "Name": "RaidPlan",
     "InternalName": "RaidPlan",
-    "AssemblyVersion": "0.4.3.0",
+    "AssemblyVersion": "0.4.4.0",
     "Description": "Build, share and call raid strategies without leaving the game. Slide-based arena diagrams, per-player cooldown assignments, and shotcall reminders anchored to real boss casts or to timings the plugin learns from your own pulls.",
     "Punchline": "Build, share and call raid strategies without leaving the game.",
     "ApplicableVersion": "any",
@@ -21,16 +21,16 @@
       "utility"
     ],
     "DownloadCount": 0,
-    "DownloadLinkInstall": "https://github.com/sorenwolfe/RaidPlan/releases/latest/download/RaidPlan.zip",
-    "DownloadLinkUpdate": "https://github.com/sorenwolfe/RaidPlan/releases/latest/download/RaidPlan.zip",
-    "DownloadLinkTesting": "https://github.com/sorenwolfe/RaidPlan/releases/latest/download/RaidPlan.zip",
+    "DownloadLinkInstall": "https://github.com/sorenwolfe/RaidPlan/releases/download/v0.4.4/RaidPlan.zip",
+    "DownloadLinkUpdate": "https://github.com/sorenwolfe/RaidPlan/releases/download/v0.4.4/RaidPlan.zip",
+    "DownloadLinkTesting": "https://github.com/sorenwolfe/RaidPlan/releases/download/v0.4.4/RaidPlan.zip",
     "_source": "sorenwolfe/RaidPlan"
   },
   {
     "Author": "SorenWolfe",
     "Name": "Foxtrot",
     "InternalName": "Foxtrot",
-    "AssemblyVersion": "0.6.2.0",
+    "AssemblyVersion": "0.6.3.0",
     "Description": "Preview any orchestrion roll before you go and earn it. Right-click a roll in your bags for a small player, or open the browser and search every track in the game — including the ones you do not own yet. The zone music steps aside while you listen and comes back when you stop.",
     "Punchline": "Hear an orchestrion roll before you go and earn it.",
     "ApplicableVersion": "any",
@@ -48,9 +48,9 @@
       "utility"
     ],
     "DownloadCount": 0,
-    "DownloadLinkInstall": "https://github.com/sorenwolfe/Foxtrot/releases/latest/download/Foxtrot.zip",
-    "DownloadLinkUpdate": "https://github.com/sorenwolfe/Foxtrot/releases/latest/download/Foxtrot.zip",
-    "DownloadLinkTesting": "https://github.com/sorenwolfe/Foxtrot/releases/latest/download/Foxtrot.zip",
+    "DownloadLinkInstall": "https://github.com/sorenwolfe/Foxtrot/releases/download/v0.6.3/Foxtrot.zip",
+    "DownloadLinkUpdate": "https://github.com/sorenwolfe/Foxtrot/releases/download/v0.6.3/Foxtrot.zip",
+    "DownloadLinkTesting": "https://github.com/sorenwolfe/Foxtrot/releases/download/v0.6.3/Foxtrot.zip",
     "_source": "sorenwolfe/Foxtrot"
   }
 ]
