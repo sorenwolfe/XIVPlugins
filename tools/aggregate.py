@@ -132,6 +132,67 @@ def publish(combined: list[dict]) -> list[dict]:
     return [{k: v for k, v in entry.items() if not k.startswith("_")} for entry in combined]
 
 
+def verify_release(entry: dict, timeout: int = 60) -> str | None:
+    """
+    Checks the version this list advertises against the archive it points at.
+
+    The version in the list and the version inside the download have to agree. When they do not,
+    the installer is told one thing and handed another, and the install fails outright — which is
+    what happens if this list ever goes stale while a plugin carries on releasing.
+
+    Returns a description of the problem, or None if the two match.
+    """
+    name = entry["InternalName"]
+    url = entry["DownloadLinkInstall"]
+
+    try:
+        request = urllib.request.Request(url, headers={"User-Agent": "xivplugins-aggregator"})
+        with urllib.request.urlopen(request, timeout=timeout) as response:
+            payload = response.read()
+    except Exception as exc:  # noqa: BLE001 - any failure here is the same kind of problem
+        return f"{name}: the download link could not be fetched ({exc})"
+
+    try:
+        import io
+        import zipfile
+
+        with zipfile.ZipFile(io.BytesIO(payload)) as archive:
+            names = archive.namelist()
+            manifest_name = f"{name}.json"
+
+            if manifest_name not in names:
+                return f"{name}: the archive has no {manifest_name} at its root (found {names})"
+            if f"{name}.dll" not in names:
+                return f"{name}: the archive has no {name}.dll at its root"
+
+            manifest = json.loads(archive.read(manifest_name).decode("utf-8"))
+    except Exception as exc:  # noqa: BLE001
+        return f"{name}: the archive could not be read ({exc})"
+
+    built = manifest.get("AssemblyVersion")
+    listed = entry["AssemblyVersion"]
+
+    if built != listed:
+        return (f"{name}: this list says {listed} but the archive contains {built}. "
+                f"Anyone installing it is told one version and handed another, and the install fails.")
+
+    return None
+
+
+def Audit(entries: list[dict]) -> int:
+    """Reports every entry whose download does not contain what it claims."""
+    broken = [problem for entry in entries if (problem := verify_release(entry)) is not None]
+
+    for problem in broken:
+        print(f"error: {problem}", file=sys.stderr)
+
+    if broken:
+        return 1
+
+    print(f"verified {len(entries)} download(s) against the versions advertised")
+    return 0
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--sources", default="sources.json")
@@ -142,6 +203,8 @@ def main() -> int:
                         help="Read sources from this folder instead of the network. For tests.")
     parser.add_argument("--check", action="store_true",
                         help="Report what would change without writing anything.")
+    parser.add_argument("--verify", action="store_true",
+                        help="Also confirm each download really contains the version being advertised.")
     args = parser.parse_args()
 
     offline = pathlib.Path(args.offline_dir) if args.offline_dir else None
@@ -167,6 +230,17 @@ def main() -> int:
 
     print(f"{len(combined)} plugin(s): {', '.join(e['InternalName'] for e in combined)}")
 
+    # Verified before anything is written, not after.
+    #
+    # This used to read `Audit(publish(combined))` at the end, which published the list and then
+    # checked it. The run went red, which looked like the check working -- but the broken list was
+    # already on the branch and already being served to every installer pointed at it. A safety net
+    # that catches you after you have hit the floor is decoration.
+    if args.verify and Audit(publish(combined)) != 0:
+        print("nothing written: the list would advertise a download that does not match",
+              file=sys.stderr)
+        return 1
+
     if args.check:
         print("unchanged" if unchanged else "would be updated")
         return 0
@@ -178,6 +252,7 @@ def main() -> int:
         print("no change")
 
     state_path.write_text(json.dumps(combined, indent=2, ensure_ascii=False) + "\n")
+
     return 0
 
 

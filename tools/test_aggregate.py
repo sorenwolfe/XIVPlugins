@@ -146,5 +146,23 @@ with tempfile.TemporaryDirectory() as tmp:
     both, problems = merge(sources("Pair"), [], fixtures)
     check("a source may carry several plugins", len(both) == 2 and not problems)
 
+# A broken list must never reach the branch. This used to publish and then verify: the run went
+# red, which looked like the check working, while the bad list was already being served.
+source = pathlib.Path("tools/aggregate.py").read_text()
+
+# find, not index: a missing marker means the guard is gone, which is a failing check rather than
+# a crashed test. A harness that raises when the defect appears looks broken rather than useful.
+verify_at = source.find("if args.verify and Audit(")
+write_at = source.find("output.write_text(rendered)")
+
+check("verification happens before anything is written",
+      verify_at >= 0 and write_at >= 0 and verify_at < write_at,
+      "publishing first means the check reports damage rather than preventing it")
+check("a failed verification writes nothing",
+      verify_at >= 0 and write_at >= 0 and "return 1" in source[verify_at:write_at],
+      source[verify_at:write_at].strip()[:120] if verify_at >= 0 else "the guard is missing")
+check("the old publish-then-verify form is gone",
+      "Audit(publish(combined)) if args.verify" not in source)
+
 print("ALL CHECKS PASSED" if not failures else f"{failures} CHECK(S) FAILED")
 sys.exit(1 if failures else 0)
