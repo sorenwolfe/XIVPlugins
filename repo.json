@@ -55,7 +55,7 @@
     "Author": "SorenWolfe",
     "Name": "Miyagi",
     "InternalName": "Miyagi",
-    "AssemblyVersion": "0.2.0.0",
+    "AssemblyVersion": "0.3.0.0",
     "Description": "Learn your rotation instead of following a highlight. Start a practice run on a striking dummy and Miyagi walks you through the opener a button at a time, lighting up the next key on your own hotbar. Then it fades: it waits for you to hesitate, then only corrects you, then goes quiet and tells you afterwards what the run actually cost — uptime, casts you cancelled by moving, cooldowns you sat on. Black Mage at level 100.",
     "Punchline": "A rotation coach that is trying to become unnecessary.",
     "ApplicableVersion": "any",
@@ -73,8 +73,8 @@
       "utility"
     ],
     "DownloadCount": 0,
-    "DownloadLinkInstall": "https://github.com/sorenwolfe/Miyagi/releases/download/v0.2.0/Miyagi.zip",
-    "DownloadLinkUpdate": "https://github.com/sorenwolfe/Miyagi/releases/download/v0.2.0/Miyagi.zip",
-    "DownloadLinkTesting": "https://github.com/sorenwolfe/Miyagi/releases/download/v0.2.0/Miyagi.zip"
+    "DownloadLinkInstall": "https://github.com/sorenwolfe/Miyagi/releases/download/v0.3.0/Miyagi.zip",
+    "DownloadLinkUpdate": "https://github.com/sorenwolfe/Miyagi/releases/download/v0.3.0/Miyagi.zip",
+    "DownloadLinkTesting": "https://github.com/sorenwolfe/Miyagi/releases/download/v0.3.0/Miyagi.zip"
   }
 ]
