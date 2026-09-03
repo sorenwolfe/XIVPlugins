@@ -57,7 +57,7 @@
     "Author": "SorenWolfe",
     "Name": "Miyagi",
     "InternalName": "Miyagi",
-    "AssemblyVersion": "0.1.2.0",
+    "AssemblyVersion": "0.1.3.0",
     "Description": "Learn your rotation instead of following a highlight. Shows the next button, then waits for you to hesitate, then says nothing until you get one wrong — and when the pull ends it tells you what it actually cost: uptime, casts you cancelled by moving, cooldowns you held too long. Black Mage at level 100, built from the Balance guide and checked against savage cast logs.",
     "Punchline": "A rotation coach that is trying to become unnecessary.",
     "ApplicableVersion": "any",
@@ -75,9 +75,9 @@
       "utility"
     ],
     "DownloadCount": 0,
-    "DownloadLinkInstall": "https://github.com/sorenwolfe/Miyagi/releases/download/v0.1.2/Miyagi.zip",
-    "DownloadLinkUpdate": "https://github.com/sorenwolfe/Miyagi/releases/download/v0.1.2/Miyagi.zip",
-    "DownloadLinkTesting": "https://github.com/sorenwolfe/Miyagi/releases/download/v0.1.2/Miyagi.zip",
+    "DownloadLinkInstall": "https://github.com/sorenwolfe/Miyagi/releases/download/v0.1.3/Miyagi.zip",
+    "DownloadLinkUpdate": "https://github.com/sorenwolfe/Miyagi/releases/download/v0.1.3/Miyagi.zip",
+    "DownloadLinkTesting": "https://github.com/sorenwolfe/Miyagi/releases/download/v0.1.3/Miyagi.zip",
     "_source": "sorenwolfe/Miyagi"
   }
 ]
